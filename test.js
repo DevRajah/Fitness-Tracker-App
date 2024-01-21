@@ -5,6 +5,7 @@ const generateDynamicEmail=( link,firstName,lastName)=> {
   
     <!DOCTYPE html>
     <html lang="en">
+    
     <head>
         <meta charset="utf-8"> <!-- utf-8 works for most cases -->
         <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
@@ -34,7 +35,7 @@ const generateDynamicEmail=( link,firstName,lastName)=> {
               </tr><!-- end tr -->
               <tr>
               <td valign="middle" style="padding: 3em 0 2em 0;">
-                <img src="https://www.the-curve.africa/static/media/curve2.b90648ddd7482f82d25a.png" alt="" style="width: 300px; max-width: 600px; height: auto; margin: auto; display: block;">
+                <img src="https://thumbs.dreamstime.com/b/invest-your-health-healthy-lifestyle-concept-diet-fitness-get-fit-fitness-equipment-healthy-food-invest-your-158227197.jpg?w=768" alt="" style="width: 300px; max-width: 600px; height: auto; margin: auto; display: block;">
               </td>
               </tr><!-- end tr -->
                     <tr>
@@ -76,8 +77,8 @@ const generateDynamicEmail=( link,firstName,lastName)=> {
                           <td style="text-align: left; padding-left: 5px; padding-right: 5px;">
                               <h3 style="color: #000; font-size: 20px; margin-top: 0; font-weight: 400;">Contact Info</h3>
                               <ul>
-                                        <li><span style="color: rgba(0,0,0,.5);">161/163 Muyibi street,Olodi Apapa</span></li>
-                                        <li><span style="color: rgba(0,0,0,.5);">081372586756</span></li>
+                                        <li><span style="color: rgba(0,0,0,.5);">110 The Curve Africa, Carat 24, Festac</span></li>
+                                        <li><span style="color: rgba(0,0,0,.5);">09015937167</span></li>
                                       </ul>
                           </td>
                         </tr>
