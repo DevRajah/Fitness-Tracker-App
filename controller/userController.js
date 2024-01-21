@@ -25,9 +25,9 @@ const signUp = async (req, res) => {
              email,
               password,
               phoneNumber,
-              userName,
-              age,
-              gender
+            //   userName,
+            //   age,
+            //   gender
              } = req.body;
              
 
@@ -50,18 +50,18 @@ const signUp = async (req, res) => {
         const salt = await bcrypt.genSaltSync(10);
         const hashedPassword = await bcrypt.hashSync(password, salt);
         const token = jwt.sign({ firstName, lastName, email }, process.env.jwtSecret, { expiresIn: "300s" })
-        const profilePicture = req.files.profilePicture.tempFilePath
-        const fileUploader = await cloudinary.uploader.upload(profilePicture, { folder: "Fitness-Media" }, (err, profilePicture) => {
-            try {
+        // const profilePicture = req.files.profilePicture.tempFilePath
+        // const fileUploader = await cloudinary.uploader.upload(profilePicture, { folder: "Fitness-Media" }, (err, profilePicture) => {
+        //     try {
       
-              // Delete the temporary file
-              fs.unlinkSync(profilePicture);
+        //       // Delete the temporary file
+        //       fs.unlinkSync(profilePicture);
       
-              return profilePicture
-            } catch (err) {
-              return err
-            }
-          })
+        //       return profilePicture
+        //     } catch (err) {
+        //       return err
+        //     }
+        //   })
         //Create a user
         const user = new User({
             firstName,
@@ -69,15 +69,15 @@ const signUp = async (req, res) => {
             email,
             password: hashedPassword,
             phoneNumber,
-            userName,
-            age,
-            gender,
-            profilePicture:{
-                url: fileUploader.url,
-                public_id: fileUploader.public_id
+            // userName,
+            // age,
+            // gender,
+            // profilePicture:{
+            //     url: fileUploader.url,
+            //     public_id: fileUploader.public_id
             }
             
-            }
+            
         )
         
         user.token = token
@@ -243,30 +243,45 @@ const resetpassword = async (req, res) => {
         res.status(500).json(error.message)
     }
 }
-const logOut = async (req, res) => {
+const logOut = async (req, res) =>{
     try{
-        const hasAuthor =req.headers.authorization
-        const token = hasAuthor.split(':')[1]
-        const id = req.userId
-        const user = await dataBase.findById(id)
-
-        if (!user) {
-            return res.status(404).json({
-                 message: 'User not found'})
+        //Get the user's Id from the request user payload
+        const {userId} = req.user
+        //
+        const hasAuthorization = req.headers.authorization;
+        //check if it is empty
+        if (!hasAuthorization){
+            return res.status(401).json({message: "Authorization token not found"})
         }
-        user.blackList.push(token)
-        await user.save()
+        //Split the token from the bearer
+        const token = hasAuthorization.split(" ")[1];
 
-        res.status(200).json({
-            message: 'Succcessfully logged out'
-        })
+        const user= await User.findById(userId);
+
+        //check if the user does not exist
+        if(!user){
+            return res.status(404).json({message: "User not found"})
+        }
+
+        //Blacklist the token
+        user.blacklist.push(token);
+
+        await user.save();
+
+        //Return a response
+
+        res.status(200).json({message: "User logged out successfully"})
 
     }catch (err) {
         res.status(500).json({
-            message: err.message,
-        });
+            message: err.message
+        })
     }
 }
+    
+
+
+
 
 
 

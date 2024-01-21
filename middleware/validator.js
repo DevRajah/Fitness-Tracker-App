@@ -18,14 +18,14 @@ const validatorUser = (data) => {
             'any.pattern.base': 'Name should only contain letters and spaces',
             'any.required': 'Last name is required',
           }),
-          userName: hapiJoiValidator.string().trim().required().min(3).max(40)
-          .pattern(/^[A-Za-z\s]+$/).messages({
-            'string.empty': 'Name cannot be empty',
-            'string.min': 'Minimum 3 characters required',
-            'string.max': 'Maximum 40 characters allowed',
-            'any.pattern.base': 'Name should only contain letters and spaces',
-            'any.required': 'Username is required',
-          }),
+          // userName: hapiJoiValidator.string().trim().required().min(3).max(40)
+          // .pattern(/^[A-Za-z\s]+$/).messages({
+          //   'string.empty': 'Name cannot be empty',
+          //   'string.min': 'Minimum 3 characters required',
+          //   'string.max': 'Maximum 40 characters allowed',
+          //   'any.pattern.base': 'Name should only contain letters and spaces',
+          //   'any.required': 'Username is required',
+          // }),
         email: hapiJoiValidator.string().email({ tlds: { allow: false } }).required().max(40).messages({
           'string.empty': 'Email cannot be empty',
           'any.required': 'Email is required',
@@ -43,20 +43,20 @@ const validatorUser = (data) => {
             'number.min' : "Phone number must be 10 characters long"
         
         }),
-        age: hapiJoiValidator.number().required().min(1).message({
-            'number.empty' : "Age is required",
-            'number.min' : "Age must be 1 character long"
+        // age: hapiJoiValidator.number().required().min(1).message({
+        //     'number.empty' : "Age is required",
+        //     'number.min' : "Age must be 1 character long"
         
-        }),
+        // }),
 
-        gender: hapiJoiValidator.string().trim().required().min(4).max(6)
-        .pattern(/^[A-Za-z\s]+$/).messages({
-          'string.empty': 'Gender cannot be empty',
-          'string.min': 'Minimum 4 characters required for gender',
-          'string.max': 'Maximum 6 characters allowed',
-          'any.pattern.base': 'Gender should only contain letters and no spaces',
-          'any.required': 'Gender is required',
-        }),
+        // gender: hapiJoiValidator.string().trim().required().min(4).max(6)
+        // .pattern(/^[A-Za-z\s]+$/).messages({
+        //   'string.empty': 'Gender cannot be empty',
+        //   'string.min': 'Minimum 4 characters required for gender',
+        //   'string.max': 'Maximum 6 characters allowed',
+        //   'any.pattern.base': 'Gender should only contain letters and no spaces',
+        //   'any.required': 'Gender is required',
+        // }),
         
     
       });

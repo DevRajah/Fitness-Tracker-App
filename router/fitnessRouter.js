@@ -29,14 +29,15 @@ router.put('/delete/:exId', authenticate, deleteExercise);
 //endpoint to delete a student's scores when login is unsuccessful
 router.delete('/delete/:goalId', authenticate, deleteGoal);
 
-
 router.get("/verify/:id/:token",verify);
 router.post("/login", login);
 router.post("/forgot", forgotpassWord);
 router.put("/reset/:id",resetpassword);
 router.put('/logout', authenticate, logOut);
 
+
 module.exports = router
+
 
 
 //mediaUpload.array("profilePicture", 5),

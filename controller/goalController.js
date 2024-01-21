@@ -18,6 +18,7 @@ const createGoal = async (req, res) => {
   }
 };
 
+
 // Get all goals for a specific user
 const getAllGoals = async (req, res) => {
   try {
