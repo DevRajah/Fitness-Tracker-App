@@ -24,7 +24,7 @@ router.get ("allExercises", authenticate, getAllExercises)
 //endpoint to update a student's scores when login is successful
 router.put('/update/:goalId', authenticate, updateGoal);
 router.put('/updates/:exId', authenticate, updateExercise);
-router.put('/delete/:exId', authenticate, deleteExercise);
+router.put('/deletes/:exId', authenticate, deleteExercise);
 
 //endpoint to delete a student's scores when login is unsuccessful
 router.delete('/delete/:goalId', authenticate, deleteGoal);

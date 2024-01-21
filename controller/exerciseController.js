@@ -29,6 +29,7 @@ const getAllExercises = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 const updateExercise = async (req, res) => {
   try {
       const exId = req.params.exId;       
