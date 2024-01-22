@@ -22,24 +22,16 @@ const userDataSchema = new mongoose.Schema({
         required: true
 
     },
-    // userName: {
-    //     type: String,
-    //     required: true
-    // },
+
     password: {
         type: String,
         required: true
+    }, 
+    gender: {
+        type: String,
+        required: true,
+        enum : ["Female", "Male"]
     },
-    // age: {
-    //     type: Number,
-    //     required: true,
-    // },
-     
-    // gender: {
-    //     type: String,
-    //     required: true,
-    //     enum : ["Female", "Male"]
-    // },
     token: {
         type: String,
     },
@@ -57,16 +49,16 @@ const userDataSchema = new mongoose.Schema({
         ref:"Exercise"
     
     }],
-    // profilePicture: {
+    profilePicture: {
 
-    //     public_id: {
-    //         type: String,
+        public_id: {
+            type: String,
          
-    //     },
-    //     url:{
-    //         type: String,
-    //     }
-    // },
+        },
+        url:{
+            type: String,
+        }
+    },
     blacklist:{
         type: Array,
         default:[]

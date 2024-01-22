@@ -25,9 +25,7 @@ const signUp = async (req, res) => {
              email,
               password,
               phoneNumber,
-            //   userName,
-            //   age,
-            //   gender
+              gender
              } = req.body;
              
 
@@ -50,18 +48,18 @@ const signUp = async (req, res) => {
         const salt = await bcrypt.genSaltSync(10);
         const hashedPassword = await bcrypt.hashSync(password, salt);
         const token = jwt.sign({ firstName, lastName, email }, process.env.jwtSecret, { expiresIn: "300s" })
-        // const profilePicture = req.files.profilePicture.tempFilePath
-        // const fileUploader = await cloudinary.uploader.upload(profilePicture, { folder: "Fitness-Media" }, (err, profilePicture) => {
-        //     try {
+        const profilePicture = req.files.profilePicture.tempFilePath
+        const fileUploader = await cloudinary.uploader.upload(profilePicture, { folder: "Fitness-Media" }, (err, profilePicture) => {
+            try {
       
-        //       // Delete the temporary file
-        //       fs.unlinkSync(profilePicture);
+              // Delete the temporary file
+              fs.unlinkSync(profilePicture);
       
-        //       return profilePicture
-        //     } catch (err) {
-        //       return err
-        //     }
-        //   })
+              return profilePicture
+            } catch (err) {
+              return err
+            }
+          })
         //Create a user
         const user = new User({
             firstName,
@@ -69,15 +67,13 @@ const signUp = async (req, res) => {
             email,
             password: hashedPassword,
             phoneNumber,
-            // userName,
-            // age,
-            // gender,
-            // profilePicture:{
-            //     url: fileUploader.url,
-            //     public_id: fileUploader.public_id
+            gender,
+            profilePicture:{
+                url: fileUploader.url,
+                public_id: fileUploader.public_id
             }
             
-            
+        } 
         )
         
         user.token = token

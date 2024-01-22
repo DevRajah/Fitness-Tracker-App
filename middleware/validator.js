@@ -37,10 +37,12 @@ const validatorUser = (data) => {
           'any.pattern.base': 'Password should contain letters, numbers, and special characters',
           'any.required': 'Password is required',
         }),
-        phoneNumber: hapiJoiValidator.string().regex(/^0\d{10}$/).length(11)
+        phoneNumber: hapiJoiValidator.string().length(11)
+        .pattern(new RegExp(/^0\d{10}$/))
         .message({
-            'number.empty' : "Phone number cannot be empty",
-            'number.min' : "Phone number must be 10 characters long"
+            'string.pattern.base' : "Please input a valid phone number",
+            'string.empty' : "Phone number cannot be empty",
+            'string.min' : "Phone number must be 11 characters long"
         
         }),
         // age: hapiJoiValidator.number().required().min(1).message({
@@ -49,14 +51,14 @@ const validatorUser = (data) => {
         
         // }),
 
-        // gender: hapiJoiValidator.string().trim().required().min(4).max(6)
-        // .pattern(/^[A-Za-z\s]+$/).messages({
-        //   'string.empty': 'Gender cannot be empty',
-        //   'string.min': 'Minimum 4 characters required for gender',
-        //   'string.max': 'Maximum 6 characters allowed',
-        //   'any.pattern.base': 'Gender should only contain letters and no spaces',
-        //   'any.required': 'Gender is required',
-        // }),
+        gender: hapiJoiValidator.string().trim().required().min(4).max(6)
+        .pattern(/^[A-Za-z\s]+$/).messages({
+          'string.empty': 'Gender cannot be empty',
+          'string.min': 'Minimum 4 characters required for gender',
+          'string.max': 'Maximum 6 characters allowed',
+          'any.pattern.base': 'Gender should only contain letters and no spaces',
+          'any.required': 'Gender is required',
+        }),
         
     
       });
